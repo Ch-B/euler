@@ -1,9 +1,17 @@
-module Main exposing (main)
+module Problems.Factorial exposing (Model, Msg, initialModel, update, view)
 
 import BigInt
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, button, div, h1, hr, text)
 import Html.Events exposing (onClick)
+
+
+title =
+    "001 Factorial"
+
+
+description =
+    "Find the factorial of a given number interactively"
 
 
 type alias Model =
@@ -50,7 +58,10 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ button [ onClick Increment ] [ text "+1" ]
+        [ h1 [] [ text title ]
+        , div [] [ text description ]
+        , hr [] []
+        , button [ onClick Increment ] [ text "+1" ]
         , div [] [ text <| String.fromInt model.count, text "! =" ]
         , div [] [ text <| BigInt.toString model.result ]
         , button [ onClick Decrement ] [ text "-1" ]
